@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteout Survival — Sea Battle Calculator v4</title>
+    <link rel="stylesheet" href="style.css">
+    <base target="_blank">
+    <base target="_blank">
+</head>
+<body>
+<div class="container">
+    <h1> Whiteout Survival — Calculator </h1>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('setup')"> Setup</div>
+        <div class="tab" onclick="switchTab('heroes')"> Heroes</div>
+        <div class="tab" onclick="switchTab('result')"> Result</div>
+        <div class="tab" onclick="switchTab('rounds')"> By Rounds</div>
+    </div>
+
+
+    <div id="tab-setup" class="section active">
+        <div class="two-col">
+
+            <div class="panel panel-atk">
+                <h2> ATTACK</h2>
+                <div class="row">
+                    <div><label>Capacity</label><input type="number" id="atk-cap" value="1730132"></div>
+                    <div><label>Inf %</label><input type="number" id="atk-inf-pct" value="50" step="1"></div>
+                    <div><label>Lan %</label><input type="number" id="atk-lan-pct" value="1" step="1"></div>
+                    <div><label>Mar %</label><input type="number" id="atk-mar-pct" value="49" step="1"></div>
+                </div>
+                <h3>Stat Bonuses (%)</h3>
+                <div class="row">
+                    <div><label>Inf Atk</label><input type="number" id="atk-inf-atk-bonus" value="3197.3" step="0.1"></div>
+                    <div><label>Inf Def</label><input type="number" id="atk-inf-def-bonus" value="2408.4" step="0.1"></div>
+                    <div><label>Inf Leth</label><input type="number" id="atk-inf-leth-bonus" value="2628.8" step="0.1"></div>
+                    <div><label>Inf HP</label><input type="number" id="atk-inf-hp-bonus" value="2589.2" step="0.1"></div>
+                </div>
+                <div class="row">
+                    <div><label>Lan Atk</label><input type="number" id="atk-lan-atk-bonus" value="2063.3" step="0.1"></div>
+                    <div><label>Lan Def</label><input type="number" id="atk-lan-def-bonus" value="1557.8" step="0.1"></div>
+                    <div><label>Lan Leth</label><input type="number" id="atk-lan-leth-bonus" value="1777.8" step="0.1"></div>
+                    <div><label>Lan HP</label><input type="number" id="atk-lan-hp-bonus" value="1745.4" step="0.1"></div>
+                </div>
+                <div class="row">
+                    <div><label>Mar Atk</label><input type="number" id="atk-mar-atk-bonus" value="2983.8" step="0.1"></div>
+                    <div><label>Mar Def</label><input type="number" id="atk-mar-def-bonus" value="2248.2" step="0.1"></div>
+                    <div><label>Mar Leth</label><input type="number" id="atk-mar-leth-bonus" value="2505.9" step="0.1"></div>
+                    <div><label>Mar HP</label><input type="number" id="atk-mar-hp-bonus" value="2481.2" step="0.1"></div>
+                </div>
+
+                <h3>Troop Levels (Attack)</h3>
+                <div class="row troop-level-row">
+                    <div class="troop-level-group">
+                        <label>Infantry</label>
+                        <select id="atk-inf-tier"><option value="t10">T10</option><option value="t11">T11</option><option value="t12" selected>T12</option></select>
+                        <select id="atk-inf-fc"><option value="fc9">FC9</option><option value="fc10" selected>FC10</option></select>
+                        <div class="troop-stat-display" id="atk-display-inf">22 / 31 / 30 / 21</div>
+                    </div>
+                    <div class="troop-level-group">
+                        <label>Lancer</label>
+                        <select id="atk-lan-tier"><option value="t10">T10</option><option value="t11">T11</option><option value="t12" selected>T12</option></select>
+                        <select id="atk-lan-fc"><option value="fc9">FC9</option><option value="fc10" selected>FC10</option></select>
+                        <div class="troop-stat-display" id="atk-display-lan">31 / 24 / 23 / 29</div>
+                    </div>
+                    <div class="troop-level-group">
+                        <label>Marksman</label>
+                        <select id="atk-mar-tier"><option value="t10">T10</option><option value="t11">T11</option><option value="t12" selected>T12</option></select>
+                        <select id="atk-mar-fc"><option value="fc9">FC9</option><option value="fc10" selected>FC10</option></select>
+                        <div class="troop-stat-display" id="atk-display-mar">33 / 24 / 23 / 30</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-def">
+                <h2>DEFENSE</h2>
+                <div class="row">
+                    <div><label>Capacity</label><input type="number" id="def-cap" value="1730132"></div>
+                    <div><label>Inf %</label><input type="number" id="def-inf-pct" value="50" step="1"></div>
+                    <div><label>Lan %</label><input type="number" id="def-lan-pct" value="1" step="1"></div>
+                    <div><label>Mar %</label><input type="number" id="def-mar-pct" value="49" step="1"></div>
+                </div>
+                <h3>Stat Bonuses (%)</h3>
+                <div class="row">
+                    <div><label>Inf Atk</label><input type="number" id="def-inf-atk-bonus" value="2582.5" step="0.1"></div>
+                    <div><label>Inf Def</label><input type="number" id="def-inf-def-bonus" value="2667.4" step="0.1"></div>
+                    <div><label>Inf Leth</label><input type="number" id="def-inf-leth-bonus" value="2891.8" step="0.1"></div>
+                    <div><label>Inf HP</label><input type="number" id="def-inf-hp-bonus" value="2868.3" step="0.1"></div>
+                </div>
+                <div class="row">
+                    <div><label>Lan Atk</label><input type="number" id="def-lan-atk-bonus" value="2051.2" step="0.1"></div>
+                    <div><label>Lan Def</label><input type="number" id="def-lan-def-bonus" value="2120.4" step="0.1"></div>
+                    <div><label>Lan Leth</label><input type="number" id="def-lan-leth-bonus" value="2739.5" step="0.1"></div>
+                    <div><label>Lan HP</label><input type="number" id="def-lan-hp-bonus" value="2716.0" step="0.1"></div>
+                </div>
+                <div class="row">
+                    <div><label>Mar Atk</label><input type="number" id="def-mar-atk-bonus" value="2582.5" step="0.1"></div>
+                    <div><label>Mar Def</label><input type="number" id="def-mar-def-bonus" value="2667.4" step="0.1"></div>
+                    <div><label>Mar Leth</label><input type="number" id="def-mar-leth-bonus" value="2891.8" step="0.1"></div>
+                    <div><label>Mar HP</label><input type="number" id="def-mar-hp-bonus" value="2868.3" step="0.1"></div>
+                </div>
+
+                <h3>Troop Levels (Defense)</h3>
+                <div class="row troop-level-row">
+                    <div class="troop-level-group">
+                        <label>Infantry</label>
+                        <select id="def-inf-tier"><option value="t10">T10</option><option value="t11">T11</option><option value="t12" selected>T12</option></select>
+                        <select id="def-inf-fc"><option value="fc9">FC9</option><option value="fc10" selected>FC10</option></select>
+                        <div class="troop-stat-display" id="def-display-inf">22 / 31 / 30 / 21</div>
+                    </div>
+                    <div class="troop-level-group">
+                        <label>Lancer</label>
+                        <select id="def-lan-tier"><option value="t10">T10</option><option value="t11">T11</option><option value="t12" selected>T12</option></select>
+                        <select id="def-lan-fc"><option value="fc9">FC9</option><option value="fc10" selected>FC10</option></select>
+                        <div class="troop-stat-display" id="def-display-lan">31 / 24 / 23 / 29</div>
+                    </div>
+                    <div class="troop-level-group">
+                        <label>Marksman</label>
+                        <select id="def-mar-tier"><option value="t10">T10</option><option value="t11">T11</option><option value="t12" selected>T12</option></select>
+                        <select id="def-mar-fc"><option value="fc9">FC9</option><option value="fc10" selected>FC10</option></select>
+                        <div class="troop-stat-display" id="def-display-mar">33 / 24 / 23 / 30</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="display:none;">
+            <input type="number" id="atk-base-inf-atk" value="22">
+            <input type="number" id="atk-base-inf-def" value="31">
+            <input type="number" id="atk-base-inf-hp" value="30">
+            <input type="number" id="atk-base-inf-leth" value="21">
+            <input type="number" id="atk-base-lan-atk" value="31">
+            <input type="number" id="atk-base-lan-def" value="24">
+            <input type="number" id="atk-base-lan-hp" value="23">
+            <input type="number" id="atk-base-lan-leth" value="29">
+            <input type="number" id="atk-base-mar-atk" value="33">
+            <input type="number" id="atk-base-mar-def" value="24">
+            <input type="number" id="atk-base-mar-hp" value="23">
+            <input type="number" id="atk-base-mar-leth" value="30">
+
+            <input type="number" id="def-base-inf-atk" value="22">
+            <input type="number" id="def-base-inf-def" value="31">
+            <input type="number" id="def-base-inf-hp" value="30">
+            <input type="number" id="def-base-inf-leth" value="21">
+            <input type="number" id="def-base-lan-atk" value="31">
+            <input type="number" id="def-base-lan-def" value="24">
+            <input type="number" id="def-base-lan-hp" value="23">
+            <input type="number" id="def-base-lan-leth" value="29">
+            <input type="number" id="def-base-mar-atk" value="33">
+            <input type="number" id="def-base-mar-def" value="24">
+            <input type="number" id="def-base-mar-hp" value="23">
+            <input type="number" id="def-base-mar-leth" value="30">
+        </div>
+    </div>
+
+
+    <div id="tab-heroes" class="section">
+        <div class="two-col">
+            <div class="panel panel-atk">
+                <h2>ATTACK — Heroes</h2>
+                <h3>Leaders (3 heroes, all skills)</h3>
+                <div id="atk-leaders"></div>
+                <div id="atk-leader-skills" class="skill-list"></div>
+
+                <h3 style="margin-top:16px">Joiners (1st skill only)</h3>
+                <div id="atk-joiners"></div>
+                <div id="atk-joiner-skills" class="skill-list"></div>
+            </div>
+            <div class="panel panel-def">
+                <h2>DEFENSE — Heroes</h2>
+                <h3>Leaders (3 heroes, all skills)</h3>
+                <div id="def-leaders"></div>
+                <div id="def-leader-skills" class="skill-list"></div>
+
+                <h3 style="margin-top:16px">Joiners (1st skill only)</h3>
+                <div id="def-joiners"></div>
+                <div id="def-joiner-skills" class="skill-list"></div>
+            </div>
+        </div>
+        <div class="panel" style="margin-top:14px;">
+            <h3>Mechanics</h3>
+            <div class="toggle-row">
+                <div>
+                    <label>Jessie stacking:</label>
+                    <select id="jessie-mode">
+                        <option value="add">Add (+25% each)</option>
+                        <option value="mul">Mul (×1.25 each)</option>
+                        <option value="single">Single (only 1)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Duplicate joiners:</label>
+                    <select id="stack-mode">
+                        <option value="no">Only 1 type</option>
+                        <option value="yes">All stack</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Chance calculation:</label>
+                    <select id="chance-mode">
+                        <option value="expected">Expected value (average)</option>
+                        <option value="max">Max (100% proc)</option>
+                        <option value="min">Min (0% proc)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-col" style="margin-top:14px;">
+            <div class="panel panel-atk">
+                <h3>T12 Rally Skills (Attack)</h3>
+                <div class="toggle-row" style="flex-direction:column;align-items:flex-start;">
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                        <input type="checkbox" id="atk-indomitable-wall" style="width:auto;">
+                        <span>Indomitable Wall (-1.8% enemy dmg, 5 turns)</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px;">
+                        <input type="checkbox" id="atk-meridian-phalanx" style="width:auto;">
+                        <span>Meridian Phalanx (-3% Inf dmg, +3% Mar dmg, 5 turns)</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px;">
+                        <input type="checkbox" id="atk-starfire" style="width:auto;">
+                        <span>Starfire (+1.5% Mar dmg every 5 turns, stackable)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="panel panel-def">
+                <h3>T12 Rally Skills (Defense)</h3>
+                <div class="toggle-row" style="flex-direction:column;align-items:flex-start;">
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                        <input type="checkbox" id="def-indomitable-wall" style="width:auto;">
+                        <span>Indomitable Wall (-1.8% enemy dmg, 5 turns)</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px;">
+                        <input type="checkbox" id="def-meridian-phalanx" style="width:auto;">
+                        <span>Meridian Phalanx (-3% Inf dmg, +3% Mar dmg, 5 turns)</span>
+                    </label>
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px;">
+                        <input type="checkbox" id="def-starfire" style="width:auto;">
+                        <span>Starfire (+1.5% Mar dmg every 5 turns, stackable)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="tab-result" class="section">
+        <button class="btn" onclick="calculate()"> CALCULATE BATTLE</button>
+        <div id="result-content"></div>
+    </div>
+
+
+    <div id="tab-rounds" class="section">
+        <button class="btn" onclick="calculateRounds()"> CALCULATE BY ROUNDS</button>
+        <div id="rounds-content"></div>
+    </div>
+</div>
+
+
+<div class="modal-overlay" id="hero-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal-title">Choose a hero</h3>
+            <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="hero-grid" id="modal-grid"></div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
